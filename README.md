@@ -17,3 +17,6 @@ Com ele, é possível:
 Versão: 1.0
 Desenvolvido por: Professor Vicente Garcia de Magalhães Júnior (vicente.gmj@gmail.com)
 Ano: 2025
+
+
+![carometro](https://github.com/user-attachments/assets/2abbb5e0-7e9a-413c-ad6a-5d8514a317ad)
