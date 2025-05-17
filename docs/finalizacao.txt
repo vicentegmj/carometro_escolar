@@ -1,0 +1,2 @@
+A instalação foi concluída com sucesso!
+Você pode iniciar o Carômetro pelo atalho criado ou diretamente pelo menu iniciar.

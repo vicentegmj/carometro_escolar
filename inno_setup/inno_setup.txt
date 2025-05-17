@@ -1,0 +1,65 @@
+; Inno Setup Script para o Carômetro Escolar
+; Autor: Vicente G M Junior
+
+#define MyAppName "Carômetro Escolar"
+#define MyAppVersion "1.0"
+#define MyAppPublisher "Vicente G M Junior"
+#define MyAppURL "https://carometroescolar.blogspot.com/"
+#define MyAppExeName "Carometro.exe"
+#define MyAppAssocName MyAppName + " File"
+#define MyAppAssocExt ".myp"
+#define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
+
+[Setup]
+AppId={{5E76A91B-2C93-4550-A406-6DDF865EAEF1}
+AppName={#MyAppName}
+AppVersion={#MyAppVersion}
+AppPublisher={#MyAppPublisher}
+AppPublisherURL={#MyAppURL}
+AppSupportURL={#MyAppURL}
+AppUpdatesURL={#MyAppURL}
+DefaultDirName=C:\CarometroEscolar
+DefaultGroupName={#MyAppName}
+DisableProgramGroupPage=yes
+ChangesAssociations=yes
+OutputDir=C:\Users\vicen\Dropbox\sistemas\delphi\scripts_inno_setup\Output
+OutputBaseFilename=carometro_installer
+Compression=lzma
+SolidCompression=yes
+WizardStyle=modern
+SetupIconFile=C:\Carometro\docs\icons8-webcam-color-32.ico
+
+; Textos informativos durante a instalação
+LicenseFile=C:\Carometro\docs\licenca.txt
+InfoBeforeFile=C:\Carometro\docs\introducao.txt
+InfoAfterFile=C:\Carometro\docs\finalizacao.txt
+
+[Languages]
+Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
+
+[Tasks]
+Name: "desktopicon"; Description: "Criar atalho na área de trabalho"; GroupDescription: "Opções adicionais"; Flags: unchecked
+
+[Files]
+Source: "C:\Carometro\Win32\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Carometro\Win32\Release\no_image.jpg"; DestDir: "{app}"; Flags: ignoreversion
+; Adicione outros arquivos se necessário
+; Source: "C:\Carometro\Win32\Release\*.dll"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+
+[Registry]
+Root: HKCU; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
+Root: HKCU; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKCU; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
+Root: HKCU; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".myp"; ValueData: ""
+
+[Icons]
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+
+[Run]
+Filename: "{app}\{#MyAppExeName}"; Description: "Executar o {#MyAppName} agora"; Flags: nowait postinstall skipifsilent
+
+; [UninstallDelete]
+; Type: files; Name: "{app}\config.ini"
+; Type: files; Name: "{app}\database.db"
